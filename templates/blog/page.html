@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if contact %}
+    <section class="ftco-section-no-padding bg-light">
+            <div class="hero-wrap">
+            <div class="overlay"></div>
+            <div class="d-flex">
+            <div class="author-image text img p-md-5 ftco-animate"
+                 style="background-image: url({{ contact.image.url }});">
+            </div>
+            <div class="author-info text p-4 mt-5 mb-5 ftco-animate">
+                <div class="desc">
+                    <h1 class="mb-4">{{ contact.title }}</h1>
+                    <p class="mb-4">{{ contact.text|safe }}</p>
+                    <ul class="ftco-social mt-3">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if fag %}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                    <h2 class="mb-3 font-weight-bold">{{ fag.title }}</h2>
+                    <p>{{ fag.text|safe }}</p>
+                </div><!-- END COL -->
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock content %}

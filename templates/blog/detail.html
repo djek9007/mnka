@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+			<section class="ftco-section-no-padding bg-light">
+				<div class="hero-wrap">
+					<div class="overlay"></div>
+					<div class="d-flex">
+
+                            <div class="author-image text img p-md-5 ftco-animate" style="background-image: url({{ post.image.url }});"></div>
+        <div class="author-info text p-4 mt-5 mb-5 ftco-animate">
+							<div class="desc">
+								<h1 class="mb-4">{{ post.title }}</h1>
+								<p class="mb-4">{{ post.text|safe }}</p>
+								<ul class="ftco-social mt-3">
+		              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+		              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+		              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+		            </ul>
+	            </div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% load static %}
+<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+			<h1 id="colorlib-logo"><a href="{% url 'blog:home' %}" ><img src="{% static 'images/logo.png' %}" alt="" ></a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+                    {% for m in menu %}
+					<li><a href="{{ m.slug }}">{{ m.title }}</a></li>
+                    {% endfor %}
+				</ul>
+			</nav>
+
+			<div class="colorlib-footer">
+					<div class="d-flex justify-content-center">
+					<ul class="d-flex align-items-center">
+						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
+						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
+						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-envelope"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</aside> <!-- END COLORLIB-ASIDE -->

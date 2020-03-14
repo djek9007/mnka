@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+ <section class="ftco-section-2">
+            <div class="photograhy">
+                <div class="row no-gutters">
+                    {% for post in post_list %}
+                        <div class="col-md-4 ftco-animate">
+                            <div
+                               class="photography-entry img  d-flex justify-content-center align-items-center"
+                               style="background-image: url({{ post.image.url }});">
+                                <div class="overlay"></div>
+                                <div class="text text-center">
+                                    <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3>
+                                    <span class="tag">{{ post.mini_text }} </span>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+{% endblock content %}
