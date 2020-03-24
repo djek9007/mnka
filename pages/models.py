@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import get_script_prefix, reverse
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import gettext_lazy as _
-
+from sorl.thumbnail import ImageField, get_thumbnail
 
 class Pages(models.Model):
     """Страницы"""
@@ -26,6 +26,12 @@ class Pages(models.Model):
 
     def get_absolute_url(self):
         return reverse('pages:page', kwargs={'slug': self.slug})
+        
+    # @property
+    # def thumbnail(self):
+    #     if self.image:
+    #         return get_thumbnail(self.image, '730x509', quality=80)
+    #     return None
 
     class Meta:
         verbose_name = _("Страница")

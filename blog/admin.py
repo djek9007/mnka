@@ -4,7 +4,8 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.forms import CheckboxSelectMultiple, models
 from django.utils.safestring import mark_safe
 
-from blog.models import Category, Post
+from blog.models import Category, Post, PhotoItem
+
 
 class ActionPublish(admin.ModelAdmin):
     """Action для публикации и снятия с публикации"""
@@ -57,21 +58,24 @@ class PostAdminForm(forms.ModelForm):
         model = Post
         fields = '__all__'
 
+class PhotoItemInline(admin.TabularInline):
+    model = PhotoItem
 
 
 
 @admin.register(Post)
 class PostAdmin(ActionPublish):
     """Статичные страницы"""
-    list_display = ("title", "published",'slug', "id", 'name_category',)
-    list_editable = ("published", )
+    list_display = ("title", "published",'slug', "id", 'name_category', 'sort',)
+    list_editable = ("published", 'sort',)
     list_filter = ("published",)
     search_fields = ("title",)
     prepopulated_fields = {"slug": ("title", )}
     form = PostAdminForm
     actions = ['unpublish', 'publish']
-    list_per_page = 10 #разделение записи
+    list_per_page = 50 #разделение записи
     filter_horizontal  = ('category',)
+    inlines = [PhotoItemInline]
     # сверху админки показывает сохранить удалить
     save_on_top = True
     # readonly_fields = ("image",)

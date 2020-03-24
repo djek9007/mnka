@@ -1,0 +1,7 @@
+<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+                    {% for m in menu %}
+					<li><a href="{{ m.get_absolute_url}}">{{ m.title }}</a></li>
+                    {% endfor %}
+				</ul>
+			</nav>

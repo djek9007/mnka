@@ -1,25 +1,77 @@
 {% extends 'base.html' %}
+{% load thumbnail static %}
+{% block title %}{{ post.title }}| Категории{% endblock %}
+{% block description %}Полиграфия в Астане, {{post.title}} | {{post.description}}{%endblock%}
 {% block content %}
- <section class="ftco-section-2">
-            <div class="photograhy">
-                <div class="row no-gutters">
-                    {% for post in post_list %}
-                        <div class="col-md-4 ftco-animate">
-                            <div
-                               class="photography-entry img  d-flex justify-content-center align-items-center"
-                               style="background-image: url({{ post.image.url }});">
-                                <div class="overlay"></div>
-                                <div class="text text-center">
-                                    <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3>
-                                    <span class="tag">{{ post.mini_text }} </span>
-                                    </a>
-                                    
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        {% if post_list %}
+                            {% for post in post_list %}
+                                <div class="col-md-6">
+                                    <div class="blog-entry ftco-animate">
+                                        <a class="img img-2" href="{{ post.get_absolute_url }}">
+                                            {%if post.image%}
+                                            {% thumbnail post.image "330x350" crop="center" as im %}
+                                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                                            {% endthumbnail %}
+                                            {%else%}
+                                            <img src="{% static 'images/no-image.jpg' %}"  class="img-fluid">
+                                            {%endif%}
+                                        </a>
+
+
+                                        <div class="text text-2 pt-2 mt-3">
+                                            <h3 class="mb-2 button-2"><a
+                                                    href="{{ post.get_absolute_url }}"><span>{{ post.title }}</span></a>
+                                            </h3>
+                                            <p>{{ post.text|safe|truncatechars:80 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div><!-- END-->
+                            <!--Paginage -->
+                            <div class="row mt-5">
+                            <div class="col text-center">
+                                <div class="block-27">
+                                    <ul>
+                                        {% if post_list.has_previous %}
+                                            <li><a href="?page={{ post_list.previous_page_number }}">&lt;</a></li>
+                                        {% endif %}
+
+                                        {% for num in post_list.paginator.page_range %}
+                                            {% if num == post_list.number %}
+                                                <li class="active"><a>{{ num }}</a></li>
+                                            {% else %}
+                                                <li><a href="?page={{ num }}"> {{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if post_list.has_next %}
+                                            <li><a href="?page={{ post_list.next_page_number }}">&gt;</a></li>
+                                        {% endif %}
+                                    </ul>
+
                                 </div>
                             </div>
+                        {% else %}
+                            <div class="alert alert-danger" role="alert">
+                                <h5>Извините пока тут нету информации <br> <b>Но скоро будет!!</b></h5>
+                            </div>
+                        {% endif %}
                         </div>
-                    {% endfor %}
+
+
+                    <!--EndPaginage -->
+
                 </div>
+                {% include 'base/right-sidebar.html' %}
             </div>
-        </section>
+        </div>
+    </section>
 
 {% endblock content %}

@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
@@ -41,6 +42,8 @@ class MenuItem(MPTTModel):
     sort = models.PositiveIntegerField(_('Порядок'), default=0)
     published = models.BooleanField(_("Отображать?"), default=True)
 
+    def get_absolute_url(self):
+        return reverse('blog:category', kwargs={'category_slug': self.slug.split('/')[1]})
 
     def __str__(self):
         return self.title

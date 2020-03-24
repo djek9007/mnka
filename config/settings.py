@@ -25,7 +25,7 @@ SECRET_KEY = 'x-n#*(4h5*1m@h86&^i8v6qwyljsa*w#!m(2)b1x5**elwm*i)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 # Application definition
 
@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'mptt',
     'ckeditor',
-    'blog',
-    'menu',
-    'pages',
+'sorl.thumbnail',
+    'blog.apps.BlogConfig',
+    'menu.apps.MenuConfig',
+    'pages.apps.PagesConfig',
+    'search.apps.SearchConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -82,7 +86,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db2.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -135,13 +139,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SITE_ID = 1
-# Menu config
-MENU_APPS = (
-        Q(app_label='pages', model='pages') |
-        Q(app_label='blog', model='post') |
-        Q(app_label='blog', model='category')
-)
 
 # CKEDITOR
 # CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'zakaz@mnka.kz'
+EMAIL_HOST_PASSWORD = 'r2KC8UDZavfa'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True

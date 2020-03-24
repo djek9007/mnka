@@ -1,0 +1,10 @@
+<div class="sidebar-box  ftco-animate">
+
+            <h3 class="sidebar-heading">Категории</h3>
+            <ul class="tagcloud">
+                {% for category in categories %}
+                    <a href="{{ category.get_absolute_url }}"
+                       class="tag-cloud-link">{{ category.name }}</a>
+                {% endfor %}
+            </ul>
+        </div>

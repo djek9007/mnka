@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                {% if post_list %}
+                    <div class="row">
+                        {% for post in post_list %}
+                            <div class="col-md-6">
+                                <div class="blog-entry ftco-animate">
+                                    <a href="{{ post.get_absolute_url }}" class="img img-2"
+                                       style="background-image: url({{ post.image.url }});"></a>
+                                    <div class="text text-2 pt-2 mt-3">
+                                        <h3 class="mb-2 button-2"><a
+                                                href="{{ post.get_absolute_url }}"><span>{{ post.title }}</span></a>
+                                        </h3>
+                                        <p>{{ post.text|safe|truncatechars:80 }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div><!-- END-->
+                    {% else %}
+                    <div class="alert alert-danger" role="alert">
+                    <p>Не найдено публикаций по вашему запросу<br>Попробуйте повторить запрос с другой формулировкой</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% include 'base/right-sidebar.html' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

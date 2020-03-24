@@ -1,10 +1,40 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Mandarinka полиграфия</title>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(61110070, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/61110070" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66494459-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-66494459-5');
+</script>
+
+    <title>Mandarinka полиграфия{% block title %}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png'%}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png'%}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png'%}">
+<link rel="manifest" href="{% static 'site.webmanifest'%}">
+<meta name="description" content="{% block description %}Полиграфия полного цикла в Нур-Султане{%endblock%}"> 
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
@@ -32,28 +62,36 @@
 
 <div id="colorlib-page">
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-   {% load static %}
-<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="{% url 'blog:home' %}" ><img src="{% static 'images/logo.png' %}" alt="" ></a></h1>
-			<nav id="colorlib-main-menu" role="navigation">
-				<ul>
-                    {% for m in menu %}
-					<li><a href="{{ m.slug }}">{{ m.title }}</a></li>
-                    {% endfor %}
-				</ul>
-			</nav>
-
-			<div class="colorlib-footer">
-					<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-envelope"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</aside> <!-- END COLORLIB-ASIDE -->
+    {% include 'base/nav.html' %}
     <div id="colorlib-main">
+        <section class="ftco-section bg-light ftco-bread">
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center">
+                    <div class="col-md-9 ftco-animate">
+
+                        <div class="container">
+                            <h1 style="color: #f67e7d">ТОО 'Mandarinka'</h1>
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <span class="card-title icon-map-o" style="color: #534768"> г.Нур-Султан, <br/> ул. Жаркент 26</span>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <a style="color: #534768" href="https://api.whatsapp.com/send?phone=77789171790&text=&source=&data=Здравствуйте%20интересует%20полиграфические%20услуги"
+                                       ><span class="card-title icon-whatsapp"> +7 778 917 17 90</span></a><br/>
+                                    <a href="{% url 'blog:contact' %}" style="color: #534768"><span
+                                            class="icon-envelope-o"> zakaz@mnka.kz</span></a>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="icon-calendar-check-o" style="color: #534768"> Пн-Сб: <br/>9.00-19.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
         {% block content %}
         {% endblock %}
 
@@ -63,26 +101,42 @@
 
                     <div class="col-md">
                         <div class="ftco-footer-widget mb-4 ml-md-4">
-                            <h2 class="ftco-heading-2">Категории</h2>
-                            <ul class="tagcloud">
-                            {% for category in categories %}
-                                <a href="{{ category.get_absolute_url }}" class="text-white">{{ category.name }}<span></span></a>
-                            {% endfor %}
-                            </ul>
+                            <h2 class="ftco-heading-2">Мы на карте</h2>
+                            <!--<iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3A94a745bebcf64c90fcc67a0e67d6d2bce859d89b1267510960b74129a6204c95&amp;source=constructor"-->
+                            <!--        width="500" height="400" frameborder="0"></iframe>-->
+                                    <a class="dg-widget-link" 
+                                    href="http://2gis.kz/nur_sultan/firm/70000001033128444/center/71.514207,51.150025/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">
+                                        Посмотреть на карте Нур-Султана</a><div class="dg-widget-link">
+                                            <a href="http://2gis.kz/nur_sultan/center/71.514207,51.150025/zoom/16/routeTab/rsType/bus/to/71.514207,51.150025╎Mandarinka?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">
+                                                Найти проезд до Mandarinka</a></div><script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script><script charset="utf-8">new DGWidgetLoader({"width":500,"height":400,"borderColor":"#a3a3a3","pos":{"lat":51.150025,"lon":71.514207,"zoom":16},"opt":{"city":"nur_sultan"},"org":[{"id":"70000001033128444"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="ftco-footer-widget mb-4">
-                            <h2 class="ftco-heading-2">Остались вопросы?</h2>
+
                             <div class="block-23 mb-3">
-                                <ul>
-                                    <li><span class="icon icon-map-marker"></span><span class="text">г. Нур-Султан, ул.Жаркент 26</span>
-                                    </li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+7 778 917 17 90</span></a>
-                                    </li>
-                                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">zakaz@mnka.kz</span></a>
-                                    </li>
-                                </ul>
+                                {% if sent %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <h5>Ваша сообщение успешно отправлено!</h5>
+                                    </div>
+                                {% else %}
+                                    <div class="contact-form">
+                                        <form class="decor" action="{% url 'blog:contact' %}" method="post">
+                                            <div class="form-left-decoration"></div>
+                                            <div class="form-right-decoration"></div>
+                                            <div class="circle"></div>
+                                            <div class="form-inner">
+                                                <h3 class="mb-4">Остались вопросы?</h3>
+                                                {% csrf_token %}
+                                                {{ form.name }}
+                                                {{ form.email }}
+                                                {{ form.phone }}
+                                                {{ form.message }}
+                                                <input type="submit" value="Отправить">
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -93,7 +147,7 @@
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                             All rights reserved | ТОО "Mandarinka" <i class="icon-heart"
-                                                                                aria-hidden="true"></i>
+                                                                      aria-hidden="true"></i>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -124,12 +178,11 @@
     <script src="{% static 'js/aos.js' %}"></script>
     <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-    <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+{#    <!--<script src="{% static 'js/jquery.timepicker.min.js' %}"></script>-->#}
     <script src="{% static 'js/scrollax.min.js' %}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <
-    <script src="{% static 'js/google-map.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <!--<script src="{% static 'js/juery.fancybox.min.js' %}"></script>-->
+
 
 </body>
 </html>

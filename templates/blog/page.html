@@ -1,40 +1,67 @@
 {% extends 'base.html' %}
+{%load thumbnail static%}
+{% block title %}{{ contact.title }} | {{ fag.title }}{% endblock %}
+{% block description %}Полиграфия в Астане{%endblock%}
 {% block content %}
-{% if contact %}
-    <section class="ftco-section-no-padding bg-light">
-            <div class="hero-wrap">
-            <div class="overlay"></div>
-            <div class="d-flex">
-            <div class="author-image text img p-md-5 ftco-animate"
-                 style="background-image: url({{ contact.image.url }});">
-            </div>
-            <div class="author-info text p-4 mt-5 mb-5 ftco-animate">
-                <div class="desc">
-                    <h1 class="mb-4">{{ contact.title }}</h1>
-                    <p class="mb-4">{{ contact.text|safe }}</p>
-                    <ul class="ftco-social mt-3">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
+    {% if contact %}
+    <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 ftco-animate">
+                        <!--<p>{%if contact.image%}-->
+                        <!--{% thumbnail contact.image "730x509" crop="center" as im %}-->
+                        <!--    <img class="img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">-->
+                        <!--{% endthumbnail %}-->
+                        <!--{%else%}-->
+                                           <p> <img src="{{contact.image.url}}"  class="img-fluid">
+                                            <!--{%endif%}-->
+                    </p>
+                        <h2 class="mb-3 font-weight-bold">{{ contact.title }}</h2>
+                        <p>{{ contact.text|safe }}</p>
+                    </div>
+                    {% if sent %}
+                        <div class="alert alert-danger" role="alert">
+                            <h5>Ваша сообщение успешно отправлено!</h5>
+                        </div>
+                    {% else %}
+                        <div class="container">
+                            <div class="contact-form">
+                                <form class="decor" action="." method="post">
+                                    <div class="form-left-decoration"></div>
+                                    <div class="form-right-decoration"></div>
+                                    <div class="circle"></div>
+                                    <div class="form-inner">
+                                        <h3 class="mb-4">Отправить заявку чтобы получить 20% скидку</h3>
+                                        {% csrf_token %}
+                                        {{ form.name }}
+                                        {{ form.email }}
+                                        {{ form.phone }}
+                                        {{ form.message }}
+                                        <input type="submit" value="Отправить">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    {% endif %}<!-- END COL -->
                 </div>
             </div>
 
-
-        </div>
-        </div>
-    </section>
+        </section>
+        
     {% endif %}
     {% if fag %}
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 ftco-animate">
-                    <h2 class="mb-3 font-weight-bold">{{ fag.title }}</h2>
-                    <p>{{ fag.text|safe }}</p>
-                </div><!-- END COL -->
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 ftco-animate">
+                        <h2 class="mb-3 font-weight-bold">{{ fag.title }}</h2>
+                        <p>{{ fag.text|safe }}</p>
+                    </div><!-- END COL -->
+                </div>
             </div>
-        </div>
-    </section>
+
+        </section>
     {% endif %}
 {% endblock content %}

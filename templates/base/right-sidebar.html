@@ -1,0 +1,15 @@
+{% load blog_tags %}
+<div class="col-lg-4 sidebar ftco-animate bg-light">
+    <div class="sidebar-box">
+        <form action="{% url 'search:index' %}" class="search-form" method="get">
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Поиск по сайту"  name="q">
+                <button type="submit" class="icon icon-search"></button>
+            </div>
+        </form>
+
+{% show_category %}
+
+    </div>
+</div><!-- END COL -->
