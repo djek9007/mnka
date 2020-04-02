@@ -7,7 +7,7 @@ SECRET_KEY = 'x-n#*(4klrjw34*OOHN7678^%$#$%^&*(m@h86&^i8v6qwyljsa*w#!m(2)b1x5**e
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["mnka.kz", "http:mnka.kz", "www.mnka.kz"]
+ALLOWED_HOSTS = ["mnka.kz", "http:mnka.kz"]
 
 DATABASES = {
     'default': {
@@ -19,8 +19,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
