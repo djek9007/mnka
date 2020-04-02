@@ -19,13 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x-n#*(4h5*1m@h86&^i8v6qwyljsa*w#!m(2)b1x5**elwm*i)'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
 
 # Application definition
 
@@ -40,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'mptt',
     'ckeditor',
-'sorl.thumbnail',
+    'sorl.thumbnail',
     'blog.apps.BlogConfig',
     'menu.apps.MenuConfig',
     'pages.apps.PagesConfig',
@@ -83,12 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -124,16 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -144,8 +127,8 @@ SITE_ID = 1
 # CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'zakaz@mnka.kz'
-EMAIL_HOST_PASSWORD = 'r2KC8UDZavfa'
-EMAIL_PORT = 2525
-EMAIL_USE_TLS = True
+
+try:
+    from .local_settings import *
+except:
+    from .prod_settings import *
