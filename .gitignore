@@ -1,5 +1,5 @@
-   idea
-    .idea
-    venv
-    db.sqlite3
+idea
+.idea
+venv
+db.sqlite3
 /blog/migrations/
